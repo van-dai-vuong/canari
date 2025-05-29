@@ -103,7 +103,7 @@ for epoch in tqdm(range(num_epochs), desc="Training Progress", unit="epoch"):
 
     # Early-stopping
     model.early_stopping(
-        evaluate_metric=-val_log_lik, current_epoch=epoch, max_epoch=num_epoch
+        evaluate_metric=-val_log_lik, current_epoch=epoch, max_epoch=num_epochs
     )
     if epoch == model.optimal_epoch:
         optimal_mu_val_preds = mu_validation_preds.copy()
@@ -126,9 +126,9 @@ print(f"Validation MSE: {model.early_stop_metric:.4f}")
 ###########################
 # Reload pretrained model
 # Load learned parameters from the saved trained model
-phi_index = model_dict["phi_index"]
-W2bar_index = model_dict["W2bar_index"]
-autoregression_index = model_dict["autoregression_index"]
+phi_index = model_dict["states_name"].index("phi")
+W2bar_index = model_dict["states_name"].index("W2bar")
+autoregression_index = model_dict["states_name"].index("autoregression")
 mu_W2bar_learn = model_dict["mu_states_optimal"][W2bar_index].item()
 phi_AR_learn = model_dict["mu_states_optimal"][phi_index].item()
 mu_AR = model_dict["mu_states"][autoregression_index].item()

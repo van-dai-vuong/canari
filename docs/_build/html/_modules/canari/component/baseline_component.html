@@ -154,9 +154,15 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../../examples/forecasting.html">Forecasting</a></li>
+        <ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Installation</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../installation_guide.html">Installation</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/forecasting_without_lstm.html">Forecasting without LSTM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/forecasting_with_lstm_univariate.html">Forecasting with LSTM univariate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/forecasting_with_lstm_multivariate.html">Forecasting with LSTM multivariate</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples/anomaly_detection.html">Anomaly detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/parameter_tuning.html">Parameter tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/read_DAT_file.html">Read .DAT file</a></li>
 </ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">API Docs</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../api/canari.data_process.html">canari.data_process</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../api/canari.component.html">canari.component</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -476,7 +482,7 @@ document.write(`
 <a class="viewcode-back" href="../../../api/canari.component.baseline_component.html#canari.component.baseline_component.LocalTrend.initialize_process_noise_matrix">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">initialize_process_noise_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_process_noise_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">std_error</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-            <span class="p">[[</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">]]</span>
+            <span class="p">[[</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
         <span class="p">)</span></div>
 
 
@@ -585,7 +591,7 @@ document.write(`
 <a class="viewcode-back" href="../../../api/canari.component.baseline_component.html#canari.component.baseline_component.LocalAcceleration.initialize_process_noise_matrix">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">initialize_process_noise_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_process_noise_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">std_error</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-            <span class="p">[[</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+            <span class="p">[[</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
         <span class="p">)</span></div>
 
 

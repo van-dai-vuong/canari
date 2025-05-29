@@ -154,9 +154,15 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../examples/forecasting.html">Forecasting</a></li>
+        <ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Installation</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation_guide.html">Installation</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/forecasting_without_lstm.html">Forecasting without LSTM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/forecasting_with_lstm_univariate.html">Forecasting with LSTM univariate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/forecasting_with_lstm_multivariate.html">Forecasting with LSTM multivariate</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/anomaly_detection.html">Anomaly detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/parameter_tuning.html">Parameter tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/read_DAT_file.html">Read .DAT file</a></li>
 </ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">API Docs</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../api/canari.data_process.html">canari.data_process</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../api/canari.component.html">canari.component</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -371,34 +377,29 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">covariates_col</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">output_col</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_add_time_covariates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add time covariates to the dataset.</span>
-<span class="sd">        Supported covariates include:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add time covariates to the data&quot;&quot;&quot;</span>
 
-<span class="sd">        - hour_of_day</span>
-<span class="sd">        - day_of_week</span>
-<span class="sd">        - day_of_year</span>
-<span class="sd">        - week_of_year</span>
-<span class="sd">        - month_of_year</span>
-<span class="sd">        - quarter_of_year</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_covariates</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
 
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_covariates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">time_cov</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_covariates</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">time_cov</span> <span class="o">==</span> <span class="s2">&quot;hour_of_day&quot;</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;hour_of_day&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">hour</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="n">time_cov</span> <span class="o">==</span> <span class="s2">&quot;day_of_week&quot;</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;day_of_week&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dayofweek</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="n">time_cov</span> <span class="o">==</span> <span class="s2">&quot;day_of_year&quot;</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;day_of_year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="n">time_cov</span> <span class="o">==</span> <span class="s2">&quot;week_of_year&quot;</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;week_of_year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isocalendar</span><span class="p">()</span><span class="o">.</span><span class="n">week</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span>
-                    <span class="p">)</span>
-                <span class="k">elif</span> <span class="n">time_cov</span> <span class="o">==</span> <span class="s2">&quot;month_of_year&quot;</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span><span class="p">)</span>
-                <span class="k">elif</span> <span class="n">time_cov</span> <span class="o">==</span> <span class="s2">&quot;quarter_of_year&quot;</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;quarter&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">quarter</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;add_time_covariates requires a pd.DatetimeIndex&quot;</span><span class="p">)</span>
+
+        <span class="n">allowed</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;hour_of_day&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">idx</span><span class="p">:</span> <span class="n">idx</span><span class="o">.</span><span class="n">hour</span><span class="p">,</span>
+            <span class="s2">&quot;day_of_week&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">idx</span><span class="p">:</span> <span class="n">idx</span><span class="o">.</span><span class="n">dayofweek</span><span class="p">,</span>
+            <span class="s2">&quot;day_of_year&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">idx</span><span class="p">:</span> <span class="n">idx</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span>
+            <span class="s2">&quot;week_of_year&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">idx</span><span class="p">:</span> <span class="n">idx</span><span class="o">.</span><span class="n">isocalendar</span><span class="p">()</span><span class="o">.</span><span class="n">week</span><span class="p">,</span>
+            <span class="s2">&quot;month_of_year&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">idx</span><span class="p">:</span> <span class="n">idx</span><span class="o">.</span><span class="n">month</span><span class="p">,</span>
+            <span class="s2">&quot;quarter_of_year&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">idx</span><span class="p">:</span> <span class="n">idx</span><span class="o">.</span><span class="n">quarter</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">extras</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_covariates</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">allowed</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">extras</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown time covariates: </span><span class="si">{</span><span class="n">extras</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">cov</span> <span class="ow">in</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_covariates</span><span class="p">):</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">allowed</span><span class="p">[</span><span class="n">cov</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">cov</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_split_start_end_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -452,7 +453,6 @@ document.write(`
 <a class="viewcode-back" href="../../api/canari.data_process.html#canari.data_process.DataProcess.standardize_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">standardize_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        TODO: unstandardize data method</span>
 <span class="sd">        Standardize the data using training statistics.</span>
 
 <span class="sd">        Returns:</span>
@@ -491,21 +491,9 @@ document.write(`
 <a class="viewcode-back" href="../../api/canari.data_process.html#canari.data_process.DataProcess.get_splits">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_splits</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span>
-        <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
-        <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
-        <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
-        <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
-    <span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Retrieve the input, output pairs (x, y) for train, validation, test sets, and all data.</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return training, validation, and test splits&quot;&quot;&quot;</span>
 
-<span class="sd">        Returns:</span>
-<span class="sd">            Tuple of dictionaries, each with keys &quot;x&quot; and &quot;y&quot;.</span>
-
-<span class="sd">        Examples:</span>
-<span class="sd">            &gt;&gt;&gt; train_set, val_set, test_set, all_data = dp.get_splits()</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">standardize_data</span><span class="p">()</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="c1"># Train split</span>
@@ -560,7 +548,7 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">values</span>
 
-        <span class="k">if</span> <span class="n">column</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">column</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">data_column</span> <span class="o">=</span> <span class="n">column</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">data_column</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_col</span>
@@ -656,7 +644,6 @@ document.write(`
         <span class="n">anomaly_end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.66</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        # TODO</span>
 <span class="sd">        Add randomly generated synthetic anomalies to the original data.</span>
 <span class="sd">        From the orginal data, choose a window between `anomaly_start` and `anomaly_end` (ratio: 0-1).</span>
 <span class="sd">        Following a uniform distribution, it randomly chooses within this window where the anomaly starts.</span>

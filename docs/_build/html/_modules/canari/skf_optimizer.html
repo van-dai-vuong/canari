@@ -154,9 +154,15 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../examples/forecasting.html">Forecasting</a></li>
+        <ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Installation</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../installation_guide.html">Installation</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../examples/forecasting_without_lstm.html">Forecasting without LSTM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/forecasting_with_lstm_univariate.html">Forecasting with LSTM univariate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/forecasting_with_lstm_multivariate.html">Forecasting with LSTM multivariate</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples/anomaly_detection.html">Anomaly detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/parameter_tuning.html">Parameter tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/read_DAT_file.html">Read .DAT file</a></li>
 </ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">API Docs</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../api/canari.data_process.html">canari.data_process</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../api/canari.component.html">canari.component</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -371,9 +377,9 @@ document.write(`
         <span class="c1"># Function for optimization</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">objective</span><span class="p">(</span>
             <span class="n">config</span><span class="p">,</span>
-            <span class="n">model_param_param</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+            <span class="n">model_param</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
         <span class="p">):</span>
-            <span class="n">skf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_skf</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">model_param_param</span><span class="p">)</span>
+            <span class="n">skf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_initialize_skf</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">model_param</span><span class="p">)</span>
             <span class="n">slope</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;slope&quot;</span><span class="p">]</span>
 
             <span class="n">detection_rate</span><span class="p">,</span> <span class="n">false_rate</span><span class="p">,</span> <span class="n">false_alarm_train</span> <span class="o">=</span> <span class="p">(</span>
@@ -415,7 +421,7 @@ document.write(`
             <span class="n">optimizer_runner</span> <span class="o">=</span> <span class="n">tune</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
                 <span class="n">tune</span><span class="o">.</span><span class="n">with_parameters</span><span class="p">(</span>
                     <span class="n">objective</span><span class="p">,</span>
-                    <span class="n">model_param_param</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_param</span><span class="p">,</span>
+                    <span class="n">model_param</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_param</span><span class="p">,</span>
                 <span class="p">),</span>
                 <span class="n">config</span><span class="o">=</span><span class="n">search_config</span><span class="p">,</span>
                 <span class="n">name</span><span class="o">=</span><span class="s2">&quot;SKF_optimizer&quot;</span><span class="p">,</span>
@@ -450,7 +456,7 @@ document.write(`
                 <span class="n">optimizer_runner</span> <span class="o">=</span> <span class="n">tune</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
                     <span class="n">tune</span><span class="o">.</span><span class="n">with_parameters</span><span class="p">(</span>
                         <span class="n">objective</span><span class="p">,</span>
-                        <span class="n">model_param_param</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_param</span><span class="p">,</span>
+                        <span class="n">model_param</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_param</span><span class="p">,</span>
                     <span class="p">),</span>
                     <span class="n">config</span><span class="o">=</span><span class="n">search_config</span><span class="p">,</span>
                     <span class="n">search_alg</span><span class="o">=</span><span class="n">OptunaSearch</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="s2">&quot;metric&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;min&quot;</span><span class="p">),</span>
@@ -465,7 +471,7 @@ document.write(`
                 <span class="n">optimizer_runner</span> <span class="o">=</span> <span class="n">tune</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
                     <span class="n">tune</span><span class="o">.</span><span class="n">with_parameters</span><span class="p">(</span>
                         <span class="n">objective</span><span class="p">,</span>
-                        <span class="n">model_param_param</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_param</span><span class="p">,</span>
+                        <span class="n">model_param</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_model_param</span><span class="p">,</span>
                     <span class="p">),</span>
                     <span class="n">config</span><span class="o">=</span><span class="n">search_config</span><span class="p">,</span>
                     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;SKF_optimizer&quot;</span><span class="p">,</span>
@@ -502,6 +508,19 @@ document.write(`
 <span class="sd">            Any: SKF instance corresponding to the optimal configuration.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">skf_optim</span></div>
+
+
+<div class="viewcode-block" id="SKFOptimizer.get_best_param">
+<a class="viewcode-back" href="../../api/canari.skf_optimizer.html#canari.skf_optimizer.SKFOptimizer.get_best_param">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_best_param</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve the optimized parameters after running optimization.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Best hyperparameter values.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_optim</span></div>
 </div>
 
 

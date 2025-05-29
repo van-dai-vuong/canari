@@ -154,9 +154,15 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="examples/forecasting.html">Forecasting</a></li>
+        <ul class="list-caption"><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Installation</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation_guide.html">Installation</a></li>
+</ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="examples/forecasting_without_lstm.html">Forecasting without LSTM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/forecasting_with_lstm_univariate.html">Forecasting with LSTM univariate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/forecasting_with_lstm_multivariate.html">Forecasting with LSTM multivariate</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/anomaly_detection.html">Anomaly detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/parameter_tuning.html">Parameter tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/read_DAT_file.html">Read .DAT file</a></li>
 </ul></details></li><li class="toctree-l0 has-children"><details><summary><p aria-level="2" class="caption" role="heading"><span class="caption-text">API Docs</span></p><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="api/canari.data_process.html">canari.data_process</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="api/canari.component.html">canari.component</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -550,6 +556,12 @@ document.write(`
         <li><a href="api/canari.skf_optimizer.html#canari.skf_optimizer.SKFOptimizer.get_best_model">(canari.skf_optimizer.SKFOptimizer method)</a>
 </li>
       </ul></li>
+      <li><a href="api/canari.model_optimizer.html#canari.model_optimizer.ModelOptimizer.get_best_param">get_best_param() (canari.model_optimizer.ModelOptimizer method)</a>
+
+      <ul>
+        <li><a href="api/canari.skf_optimizer.html#canari.skf_optimizer.SKFOptimizer.get_best_param">(canari.skf_optimizer.SKFOptimizer method)</a>
+</li>
+      </ul></li>
       <li><a href="api/canari.data_process.html#canari.data_process.DataProcess.get_data">get_data() (canari.data_process.DataProcess method)</a>
 </li>
       <li><a href="api/canari.model.html#canari.model.Model.get_dict">get_dict() (canari.model.Model method)</a>
@@ -795,6 +807,8 @@ document.write(`
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/canari.skf.html#canari.skf.SKF.marginal_prob">marginal_prob (canari.skf.SKF attribute)</a>
+</li>
+      <li><a href="api/canari.model.html#canari.model.Model.metric_optim">metric_optim (canari.model.Model attribute)</a>
 </li>
       <li><a href="api/canari.skf.html#canari.skf.SKF.model">model (canari.skf.SKF attribute)</a>
 </li>
@@ -1112,6 +1126,10 @@ document.write(`
 
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/canari.model.html#canari.model.Model.white_noise_decay">white_noise_decay() (canari.model.Model method)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/canari.component.white_noise_component.html#canari.component.white_noise_component.WhiteNoise">WhiteNoise (class in canari.component.white_noise_component)</a>
 </li>
