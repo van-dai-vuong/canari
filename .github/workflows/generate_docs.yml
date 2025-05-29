@@ -1,7 +1,8 @@
 name: Build & Deploy Docs
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [main]
 
 permissions:
   contents: read
