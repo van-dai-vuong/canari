@@ -3,7 +3,7 @@ name: Build & Deploy Docs
 on:
   push:
     branches:
-      - docs/docs_workflows    
+      - main    
   workflow_dispatch:
 
 jobs:
