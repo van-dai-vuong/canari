@@ -21,7 +21,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r docs/requirements.txt
           sudo apt-get update && sudo apt-get install -y pandoc
-          pip install -e .
 
       - name: Manually add src/ to PYTHONPATH
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
@@ -31,7 +30,6 @@ jobs:
 
       - name: Build Sphinx docs
         working-directory: docs
-        # run: sphinx-build -b html . _build/html -n -W -T
         run: sphinx-build -b html . _build/html
 
       - name: Deploy to gh-pages
