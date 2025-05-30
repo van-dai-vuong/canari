@@ -21,7 +21,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r docs/requirements.txt
           sudo apt-get update && sudo apt-get install -y pandoc
-          pip install -e .
+
+      - name: Manually add src/ to PYTHONPATH
+        run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
 
       - name: Clean previous Sphinx build
         run: rm -rf docs/_build/html

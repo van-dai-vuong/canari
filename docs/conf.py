@@ -21,6 +21,8 @@ extensions = [
 ]
 nbsphinx_execute = "never"
 
+autodoc_mock_imports = ["numpy", "pytagi"]  # 👈 Add other libraries as needed
+
 templates_path = ["_templates"]
 exclude_patterns = []
 
