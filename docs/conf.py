@@ -1,10 +1,9 @@
 import os
 import sys
 
-HERE = os.path.dirname(__file__)
-ROOT = os.path.abspath(os.path.join(HERE, os.pardir))
-SRC = os.path.join(ROOT, "src")
-sys.path.insert(0, SRC)
+sys.path.insert(
+    0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src"))
+)
 
 project = "canari"
 copyright = "2025, Van-Dai Vuong, Luong-Ha Nguyen, James-A. Goulet"
