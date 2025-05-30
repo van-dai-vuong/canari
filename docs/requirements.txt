@@ -3,6 +3,5 @@ sphinx-book-theme>=0.3.4
 nbsphinx>=0.8.8  
 matplotlib>=3.5
 numpy>=1.22
-pytagi
 pandas
 ray[tune]
