@@ -21,19 +21,6 @@ extensions = [
 ]
 nbsphinx_execute = "never"
 
-autodoc_mock_imports = [
-    "numpy",
-    "pytagi",
-    "pandas",
-    "ray",
-    "ray.tune",
-    "ray.tune.search",
-    "ray.tune.search.optuna",
-    "ray.tune.schedulers",
-    "matplotlib.pyplot",
-    "matplotlib.dates",
-]
-
 templates_path = ["_templates"]
 exclude_patterns = []
 
