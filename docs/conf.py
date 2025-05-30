@@ -21,7 +21,15 @@ extensions = [
 ]
 nbsphinx_execute = "never"
 
-autodoc_mock_imports = ["numpy", "pytagi"]  # 👈 Add other libraries as needed
+autodoc_mock_imports = [
+    "numpy",
+    "pytagi",
+    "ray",
+    "ray.tune",
+    "ray.tune.search",
+    "ray.tune.search.optuna",
+    "ray.tune.schedulers",
+]
 
 templates_path = ["_templates"]
 exclude_patterns = []
