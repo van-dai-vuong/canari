@@ -21,7 +21,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r docs/requirements.txt
           sudo apt-get update && sudo apt-get install -y pandoc
-          pip install . -e
+          pip install -e .
 
       - name: Manually add src/ to PYTHONPATH
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)/src" >> $GITHUB_ENV
