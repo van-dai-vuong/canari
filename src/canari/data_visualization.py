@@ -373,12 +373,12 @@ def plot_states(
             ax=ax,
         )
 
-        # Add legends for the first subplot
-        if legend_location:
-            if idx == 0:
-                ax.legend(
-                    [r"$\mu$", f"$\pm{num_std}\sigma$"], loc=legend_location, ncol=2
-                )
+        # # Add legends for the first subplot
+        # if legend_location:
+        #     if idx == 0:
+        #         ax.legend(
+        #             [r"$\mu$", f"$\pm{num_std}\sigma$"], loc=legend_location, ncol=2
+        #         )
 
         # Plot horizontal line at y=0.0 for specific states
         if plot_state in ["trend", "acceleration"]:
@@ -508,12 +508,12 @@ def plot_skf_states(
     _add_dynamic_grids(axes[0], time)
 
     # Add legends for the first subplot
-    if legend_location:
-        axes[0].legend(
-            [r"$\mu$", f"$\pm{num_std}\sigma$", r"$y$"],
-            loc=legend_location,
-            ncol=3,
-        )
+    # if legend_location:
+    #     axes[0].legend(
+    #         [r"$\mu$", f"$\pm{num_std}\sigma$", r"$y$"],
+    #         loc=legend_location,
+    #         ncol=3,
+    #     )
 
     # Plot abnormal model probability
     axes[len(states_to_plot)].plot(time, model_prob, color="b")
