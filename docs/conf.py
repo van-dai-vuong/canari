@@ -24,6 +24,7 @@ nbsphinx_execute = "never"
 autodoc_mock_imports = [
     "numpy",
     "pytagi",
+    "pandas",
     "ray",
     "ray.tune",
     "ray.tune.search",
