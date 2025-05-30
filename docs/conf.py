@@ -30,6 +30,8 @@ autodoc_mock_imports = [
     "ray.tune.search",
     "ray.tune.search.optuna",
     "ray.tune.schedulers",
+    "matplotlib.pyplot",
+    "matplotlib.dates",
 ]
 
 templates_path = ["_templates"]
