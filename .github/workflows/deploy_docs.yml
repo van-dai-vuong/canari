@@ -1,18 +1,14 @@
 name: Build & Deploy Docs (via gh-pages)
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - '**' 
+    tags:
+      - 'v*'
   pull_request:
     branches:
       - main
-
-# on:
-#   workflow_dispatch:
-
-# on:
-#   pull_request:
-#     branches:
-#       - main
 
 jobs:
   deploy:
